@@ -1,15 +1,14 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 )
 
 func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Hello Gopher")
+	})
 
-	// Simple static webserver:
-	mux := http.NewServeMux()
-	mux.Handle("/views/", http.StripPrefix("/views/", http.FileServer(http.Dir("views/"))))
-
-	log.Fatal(http.ListenAndServe(":3000", mux))
+	http.ListenAndServe(":3000", nil)
 }
