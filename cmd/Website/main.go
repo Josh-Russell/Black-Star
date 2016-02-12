@@ -10,5 +10,5 @@ func main() {
 		fmt.Fprintf(w, "Hello Gopher")
 	})
 
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
