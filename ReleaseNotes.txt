@@ -4,5 +4,12 @@ https://projectpegasus.herokuapp.com/
 ##Release Notes
 The website exists
 
-0.0.2
+++++++++ 0.0.3 ++++++++
+SPRINT 2
+1. added a nav bar to navigate through pages
+2. added pages to navigate to
+3. added routing so that the pages are loaded rather than simply writting to the website
+
+++++++++ 0.0.2 ++++++++
+SPRINT 1
 1. Changed hello gopher to hello world.
