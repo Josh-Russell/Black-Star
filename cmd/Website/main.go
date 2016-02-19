@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello World!")
-	})
+	mux := http.NewServeMux()
 
-	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	mux.Handle("/templates/", http.StripPrefix("/templates/", http.FileServer(http.dir("templates/"))))
+
+	http.ListenAndServe(":"+os.Getenv("PORT"), mux)
 }
