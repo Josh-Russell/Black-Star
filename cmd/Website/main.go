@@ -39,6 +39,9 @@ func main() {
 	router.GET("/profile", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "profile.tmpl.html", nil)
 	})
+	router.HET("/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.tmpl.html", nil)
+	})
 
 	router.Run(":" + port)
 }
