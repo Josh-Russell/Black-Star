@@ -37,6 +37,7 @@ test/pass.out
 test/run.out
 test/times.out
 test/garbage/*.out
+videos/*
 goinstall.log
 last-change
 VERSION.cache
