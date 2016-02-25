@@ -24,6 +24,9 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	})
+	router.GET("/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl.html", nil)
+	})
 	router.GET("/view", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "view.tmpl.html", nil)
 	})
