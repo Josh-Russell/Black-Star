@@ -18,7 +18,7 @@ body {
 a {
 	text-decoration: none;
 }
-a:hover {
+#menu a:hover {
 	border-bottom-width: 3px;
 	border-bottom-style: solid;
 	padding-bottom: 4px;
@@ -26,6 +26,7 @@ a:hover {
 	border-top-style: solid;
 	padding-top: 4px;
 	color: #FFF;
+	text-decoration: none;
 }
 header {
 	width: 100%;
@@ -38,9 +39,6 @@ header a {
 #logo {
 	border: 0;
 	margin-top: 15px;
-}
-#logo a:hover{
-	border: none;
 }
 #menu {
 	float: right;
