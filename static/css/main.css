@@ -25,6 +25,7 @@ a:hover {
 	border-top-width: 3px;
 	border-top-style: solid;
 	padding-top: 4px;
+	color: #FFF;
 }
 header {
 	width: 100%;
@@ -38,9 +39,12 @@ header a {
 	border: 0;
 	margin-top: 15px;
 }
+#logo a:hover{
+	border: none;
+}
 #menu {
 	float: right;
-	width: 400px;
+	width: 410px;
 	margin-top: 30px;
 	font-size: 15px;
 }
@@ -81,6 +85,7 @@ header a {
 .form-group {
 	margin-left: auto;
 	margin-right: auto;
+	width: 350px;
 }
 .form-control {
 	width: 350px;
