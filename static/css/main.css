@@ -18,13 +18,15 @@ body {
 a {
 	text-decoration: none;
 }
-a:hover {
+#menu a:hover {
 	border-bottom-width: 3px;
 	border-bottom-style: solid;
 	padding-bottom: 4px;
 	border-top-width: 3px;
 	border-top-style: solid;
 	padding-top: 4px;
+	color: #FFF;
+	text-decoration: none;
 }
 header {
 	width: 100%;
@@ -40,7 +42,7 @@ header a {
 }
 #menu {
 	float: right;
-	width: 400px;
+	width: 501px;
 	margin-top: 30px;
 	font-size: 15px;
 }
@@ -64,23 +66,25 @@ header a {
     border-radius: 10px;
     border: 3px double #FFFFFF;
 }
-#registerDiv {
+#registerDiv, #viewVideoDiv, #commentDiv {
 	font-family: 'myFirstFont';
-	width: 530px;
     height: auto;
     padding-bottom: 10px;
     margin: 0 auto;
-    margin-top: 280px;
-    border-radius: 10px;
     border: none;
 	text-align: center;
 }
 #registerDiv h1 {
 	
 }
+#registerDiv {
+	width: 530px;
+	margin-top: 280px;
+}
 .form-group {
 	margin-left: auto;
 	margin-right: auto;
+	width: 350px;
 }
 .form-control {
 	width: 350px;
@@ -112,4 +116,126 @@ header a {
 }
 #registerBtn:hover {
 	border: 1px solid #FFF;
+}
+#viewVideoDiv {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	padding-right: 60px;
+	padding-bottom: 60px;
+	padding-left: 60px;
+	width: 860px;
+	background-color: #FFFFFF;
+	border-radius: 3px;
+	border: solid 1px #C9C9CC;
+}
+#videoHeader {
+	text-align: left;
+	font-family: Helvetica;
+	margin-top: 20px;
+}
+#videoTitle {
+	font-size: 22px;
+	font-weight: bolder;
+}
+#tags {
+	font-size: 14px;
+	margin-top: -10px;
+	margin-bottom: -30px;
+}
+video {
+	width: 730px;
+	height: 540px;
+	margin-top: -20px;
+	margin-bottom: 30px;
+}
+#videoInfo {
+	font-family: Helvetica;
+}
+#viewsVotes {
+	float: right;
+	width: 190px;
+	height: 25px;
+	margin-top: -10px;
+}
+#viewsVotes h3 {
+	font-size: 12px;
+	margin-top: 6px;
+	margin-left: 5px;
+}
+#videoInfo button {
+	width: 13px;
+	height: 20px;
+	background-size: 100%;
+	background-size: 13px 20px;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	margin-top: 2px;
+}
+button:focus {
+	outline: none;
+}
+#views {
+	width: 25px;
+	height: 25px;
+	float: left;
+}
+#viewsText {
+	float: left;
+	margin-right: 35px;
+}
+#likeBtn {
+	background:url(../images/like.png) 100%;
+	float: left;
+}
+#likeText {
+	float: left;
+	margin-right: 35px;
+}
+#dislikeBtn {
+	background:url(../images/dislike.png) 100%;
+	float: left;
+}
+#dislikeText {
+	float: left;
+}
+#videoOwner {
+	width: 300px;
+	padding-top: 35px;
+	margin-bottom: 5px;
+	text-align: left;
+	font-size: 16px;
+}
+#videoDescription {
+	text-align: left;
+	font-size: 14px;
+}
+#commentDiv {
+	margin-top: 30px;
+	margin-left: -60px;
+	margin-bottom: -60px;
+	background-color: #F6F7F8;
+	width: 858px;
+	height: auto;
+	border: solid 1px #C9C9CC;
+	font-family: Helvetica;
+}
+#userEmail {
+	margin-left: 20px;
+	margin-top: 20px;
+	color: #5569AC;
+	text-align: left;
+	font-weight: bolder;
+}
+#commentDate {
+	font-size: 12px;
+	margin-left: 20px;
+	margin-top: -12px;
+	text-align: left;
+}
+#comment {
+	margin-left: 20px;
+	margin-right: 20px;
+	text-align: left;
+	font-size: 15px;
 }
