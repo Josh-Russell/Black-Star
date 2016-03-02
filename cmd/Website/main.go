@@ -80,10 +80,10 @@ func main() {
 				c.HTML(http.StatusOK, "view.tmpl.html", nil)
 				fmt.Println("it worked!")
 			} else {
-				c.HTML(http.StatusUnauthorized, "view.tmpl.html", nil)
 				fmt.Println("email worked: ", form.Email == "user")
 				fmt.Println("password worked: ", form.RetypePassword == form.Password)
 				fmt.Println("You didn't get logged in")
+				c.HTML(http.StatusUnauthorized, "view.tmpl.html", nil)
 			}
 		}
 	})
