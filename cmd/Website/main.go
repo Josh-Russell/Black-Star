@@ -1,25 +1,32 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"net/http"
 	"os"
 
 	"github.com/heroku/go-getting-started/Godeps/_workspace/src/github.com/gin-gonic/gin"
 )
 
+type Login struct {
+	User     string `form:"user" json:"user" binding:"required"`
+	Password string `form:"password" json:"password" binding:"required"`
+}
+
 func main() {
 	port := os.Getenv("PORT")
 
 	if port == "" {
-		log.Fatal("$PORT must be set")
+		port = "3000"
 	}
 
-	router := gin.New()
-	router.Use(gin.Logger())
-	router.LoadHTMLGlob("templates/*.tmpl.html")
+	fmt.Println(port)
 
-	router.Static("/static", "static")
+	router := gin.New()
+	//router.Use(gin.Logger())
+	router.LoadHTMLGlob("C:/Users/JRussell/Documents/GoProjects/src/github.com/heroku/Project Pegasus/templates/*.tmpl.html")
+
+	router.Static("/../static", "static")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
@@ -43,5 +50,18 @@ func main() {
 		c.HTML(http.StatusOK, "login.tmpl.html", nil)
 	})
 
+	router.POST("/register", func(c *gin.Context) {
+		var form Login
+		// This will infer what binder to use depending on the content-type header.
+		if c.Bind(&form) == nil {
+			if form.User == "user" && form.Password == "123" {
+				c.HTML(http.StatusOK, "view.tmpl.html", nil)
+				fmt.Println("it worked!")
+			} else {
+				c.HTML(http.StatusUnauthorized, "profile.tmpl.html", nil)
+				fmt.Println("You didn't get logged in")
+			}
+		}
+	})
 	router.Run(":" + port)
 }

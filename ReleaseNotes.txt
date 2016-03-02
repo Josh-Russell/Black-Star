@@ -2,7 +2,12 @@
 https://projectpegasus.herokuapp.com/
 
 ##Release Notes
-The website exists
+
+++++++++ 0.0.4 ++++++++
+SPRINT 3
+1. created styling for the website
+2. created the register pages
+3. created the ability have user sessions
 
 ++++++++ 0.0.3 ++++++++
 SPRINT 2
