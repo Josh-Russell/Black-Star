@@ -57,7 +57,7 @@ func main() {
 		var form Login
 		// This will infer what binder to use depending on the content-type header.
 		if c.Bind(&form) == nil {
-			if form.User == "user" && form.Password == "123" {
+			if form.email == "user" && form.passowrd == "123" {
 				c.HTML(http.StatusOK, "view.tmpl.html", nil)
 				fmt.Println("it worked!")
 			} else {
