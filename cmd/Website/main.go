@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/heroku/ProjectPegasus/vendor/github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 type Login struct {
