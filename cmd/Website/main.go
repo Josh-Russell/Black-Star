@@ -76,11 +76,13 @@ func main() {
 		var form Login
 
 		if c.Bind(&form) == nil {
-			if form.Email == "user" && form.Password == "123" && form.RetypePassword == form.Password {
+			if form.Email == "user" && form.RetypePassword == form.Password {
 				c.HTML(http.StatusOK, "view.tmpl.html", nil)
 				fmt.Println("it worked!")
 			} else {
 				c.HTML(http.StatusUnauthorized, "view.tmpl.html", nil)
+				fmt.Println("email worked: ", form.Email == "user")
+				fmt.Println("password worked: ", form.RetypePassword == form.Password)
 				fmt.Println("You didn't get logged in")
 			}
 		}
