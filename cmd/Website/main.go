@@ -3,17 +3,35 @@ package main
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-const (
-	// keep the users logged in for 3 days
-	sessionLength     = 24 * 3 * time.Hour
-	sessionCookieName = "GophrSession"
-	sessionIDLength   = 20
-)
+func init() {
+	// Assign a user store
+	store, err := NewFileUserStore("./data/users.json")
+	if err != nil {
+		panic(fmt.Errorf("Error creating user store: %s", err))
+	}
+	globalUserStore = store
+
+	// Assign a session store
+	sessionStore, err := NewFileSessionStore("./data/sessions.json")
+	if err != nil {
+		panic(fmt.Errorf("Error creating session store: %s", err))
+	}
+	globalSessionStore = sessionStore
+
+	// Assign a sql database
+	//	db, err := NewMySQLDB("root:Sar64jim24@tcp(127.0.0.1:3306)/gophr")
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//globalMySQLDB = db
+
+	// Assign an image store
+	//globalImageStore = NewDBImageStore()
+}
 
 func main() {
 	port := os.Getenv("PORT")
@@ -44,8 +62,9 @@ func main() {
 	router.GET("/login", HandleNavigateToLoginPage)
 	router.GET("/viewVideo", HandleNavigateToVideoViewPage)
 
-	router.POST("/login", HandleUserLogin)
-	router.POST("/register", HandleUserCreate)
+	router.POST("/logout", HandleSessionDestroy)
+	router.POST("/login", HandleSessionCreate)
+	router.POST("/register", HandleSessionNew)
 
 	router.Run(":" + port)
 }
