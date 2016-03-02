@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/heroku/go-getting-started/Godeps/_workspace/src/github.com/gin-gonic/gin"
+	"github.com/heroku/ProjectPegasus/vendor/github.com/gin-gonic/gin"
 )
 
 type Login struct {
-	User     string `form:"user" json:"user" binding:"required"`
+	Email    string `form:"email" json:"email" binding:"required"`
 	Password string `form:"password" json:"password" binding:"required"`
 }
 
@@ -23,10 +23,10 @@ func main() {
 	fmt.Println(port)
 
 	router := gin.New()
-	//router.Use(gin.Logger())
-	router.LoadHTMLGlob("C:/Users/JRussell/Documents/GoProjects/src/github.com/heroku/Project Pegasus/templates/*.tmpl.html")
+	router.Use(gin.Logger())
+	router.LoadHTMLGlob("../../templates/*.tmpl.html")
 
-	router.Static("/../static", "static")
+	router.Static("/static", "static")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
@@ -57,7 +57,7 @@ func main() {
 		var form Login
 		// This will infer what binder to use depending on the content-type header.
 		if c.Bind(&form) == nil {
-			if form.email == "user" && form.passowrd == "123" {
+			if form.Email == "user" && form.Password == "123" {
 				c.HTML(http.StatusOK, "view.tmpl.html", nil)
 				fmt.Println("it worked!")
 			} else {
