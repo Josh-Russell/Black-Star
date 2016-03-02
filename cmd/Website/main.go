@@ -9,9 +9,13 @@ import (
 )
 
 type Login struct {
+	Email    string `form:"email" json:"email" binding:"required"`
+	Password string `form:"password" json:"password" binding:"required"`
+}
+type Register struct {
 	Email          string `form:"email" json:"email" binding:"required"`
 	Password       string `form:"password" json:"password" binding:"required"`
-	RetypePassword string `form:"retype-password" json:retype-password"`
+	RetypePassword string `form:"repeat-password" json:"repeat-password" binding:"required"`
 }
 
 func main() {
@@ -73,7 +77,7 @@ func main() {
 		}
 	})
 	router.POST("/register", func(c *gin.Context) {
-		var form Login
+		var form Register
 
 		if c.Bind(&form) == nil {
 			if form.Email == "user" && form.RetypePassword == form.Password {
@@ -81,7 +85,7 @@ func main() {
 				fmt.Println("it worked!")
 			} else {
 				fmt.Println("email worked: ", form.Email == "user")
-				fmt.Println("password worked: ", form.RetypePassword == form.Password)
+				fmt.Println("password worked: ", form.RetypePassword == form.Password, form.RetypePassword, form.Password)
 				fmt.Println("You didn't get logged in")
 				c.HTML(http.StatusUnauthorized, "view.tmpl.html", nil)
 			}
