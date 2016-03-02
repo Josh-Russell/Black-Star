@@ -2,21 +2,18 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-type Login struct {
-	Email    string `form:"email" json:"email" binding:"required"`
-	Password string `form:"password" json:"password" binding:"required"`
-}
-type Register struct {
-	Email          string `form:"email" json:"email" binding:"required"`
-	Password       string `form:"password" json:"password" binding:"required"`
-	RetypePassword string `form:"repeat-password" json:"repeat-password" binding:"required"`
-}
+const (
+	// keep the users logged in for 3 days
+	sessionLength     = 24 * 3 * time.Hour
+	sessionCookieName = "GophrSession"
+	sessionIDLength   = 20
+)
 
 func main() {
 	port := os.Getenv("PORT")
@@ -35,61 +32,20 @@ func main() {
 		router.Static("/static", "static")
 	} else {
 		router.LoadHTMLGlob("../../templates/*.tmpl.html")
-		router.Static("/static", "static")
+		router.Static("../../static", "static")
 	}
 
-	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.tmpl.html", nil)
-	})
-	router.GET("/discover", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "discover.tmpl.html", nil)
-	})
-	router.GET("/upload", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "upload.tmpl.html", nil)
-	})
-	router.GET("/search", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "search.tmpl.html", nil)
-	})
-	router.GET("/register", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "register.tmpl.html", nil)
-	})
-	router.GET("/profile", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "profile.tmpl.html", nil)
-	})
-	router.GET("/login", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.tmpl.html", nil)
-	})
-	router.GET("/viewVideo", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "viewVideo.tmpl.html", nil)
-	})
+	router.GET("/", HandleNavigateToHome)
+	router.GET("/discover", HandleNavigateToDiscoverPage)
+	router.GET("/upload", HandleNavigateToUpload)
+	router.GET("/search", HandleNavigateToSearch)
+	router.GET("/register", HandleNavigateToRegister)
+	router.GET("/profile", HandleNavigateToProfile)
+	router.GET("/login", HandleNavigateToLoginPage)
+	router.GET("/viewVideo", HandleNavigateToVideoViewPage)
 
-	router.POST("/login", func(c *gin.Context) {
-		var form Login
-		// This will infer what binder to use depending on the content-type header.
-		if c.Bind(&form) == nil {
-			if form.Email == "user" && form.Password == "123" {
-				c.HTML(http.StatusOK, "view.tmpl.html", nil)
-				fmt.Println("it worked!")
-			} else {
-				c.HTML(http.StatusUnauthorized, "login.tmpl.html", nil)
-				fmt.Println("You didn't get logged in")
-			}
-		}
-	})
-	router.POST("/register", func(c *gin.Context) {
-		var form Register
+	router.POST("/login", HandleUserLogin)
+	router.POST("/register", HandleUserCreate)
 
-		if c.Bind(&form) == nil {
-			if form.Email == "user" && form.RetypePassword == form.Password {
-				c.HTML(http.StatusOK, "view.tmpl.html", nil)
-				fmt.Println("it worked!")
-			} else {
-				fmt.Println("email worked: ", form.Email == "user")
-				fmt.Println("password worked: ", form.RetypePassword == form.Password, form.RetypePassword, form.Password)
-				fmt.Println("You didn't get logged in")
-				c.HTML(http.StatusUnauthorized, "register.tmpl.html", nil)
-			}
-		}
-	})
 	router.Run(":" + port)
 }
