@@ -123,7 +123,7 @@ header a {
 	padding-right: 60px;
 	padding-bottom: 60px;
 	padding-left: 60px;
-	width: 730px;
+	width: 860px;
 	background-color: #FFFFFF;
 	border-radius: 3px;
 	border: solid 1px #C9C9CC;
@@ -131,6 +131,7 @@ header a {
 #videoHeader {
 	text-align: left;
 	font-family: Helvetica;
+	margin-top: 20px;
 }
 #videoTitle {
 	font-size: 22px;
@@ -144,6 +145,8 @@ header a {
 video {
 	width: 730px;
 	height: 540px;
+	margin-top: -20px;
+	margin-bottom: 30px;
 }
 #videoInfo {
 	font-family: Helvetica;
@@ -199,7 +202,7 @@ button:focus {
 #videoOwner {
 	width: 300px;
 	padding-top: 35px;
-	margin-bottom: -10px;
+	margin-bottom: 5px;
 	text-align: left;
 	font-size: 16px;
 }
@@ -212,13 +215,14 @@ button:focus {
 	margin-left: -60px;
 	margin-bottom: -60px;
 	background-color: #F6F7F8;
-	width: 849px;
+	width: 858px;
 	height: auto;
 	border: solid 1px #C9C9CC;
 	font-family: Helvetica;
 }
 #userEmail {
 	margin-left: 20px;
+	margin-top: 20px;
 	color: #5569AC;
 	text-align: left;
 	font-weight: bolder;
