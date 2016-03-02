@@ -9,8 +9,9 @@ import (
 )
 
 type Login struct {
-	Email    string `form:"email" json:"email" binding:"required"`
-	Password string `form:"password" json:"password" binding:"required"`
+	Email          string `form:"email" json:"email" binding:"required"`
+	Password       string `form:"password" json:"password" binding:"required"`
+	RetypePassword string `form:"retype-password" json:retype-password"`
 }
 
 func main() {
@@ -58,7 +59,7 @@ func main() {
 		c.HTML(http.StatusOK, "viewVideo.tmpl.html", nil)
 	})
 
-	router.POST("/register", func(c *gin.Context) {
+	router.POST("/login", func(c *gin.Context) {
 		var form Login
 		// This will infer what binder to use depending on the content-type header.
 		if c.Bind(&form) == nil {
@@ -67,6 +68,19 @@ func main() {
 				fmt.Println("it worked!")
 			} else {
 				c.HTML(http.StatusUnauthorized, "profile.tmpl.html", nil)
+				fmt.Println("You didn't get logged in")
+			}
+		}
+	})
+	router.POST("/register", func(c *gin.Context) {
+		var form Login
+
+		if c.Bind(&form) == nil {
+			if form.Email == "user" && form.Password == "123" && form.RetypePassword == form.Password {
+				c.HTML(http.StatusOK, "view.tmpl.html", nil)
+				fmt.Println("it worked!")
+			} else {
+				c.HTML(http.StatusUnauthorized, "view.tmpl.html", nil)
 				fmt.Println("You didn't get logged in")
 			}
 		}
