@@ -1,0 +1,44 @@
+<html>
+	<body id="viewVideoBody">
+	  {{template "header.tmpl.html"}}
+	<div id="registerDiv">
+			<h1>sign up</h1>
+			<form action="/register" method="POST">
+				<div class="form-group">
+					<input type="text" name="email" placeholder="email" id="newEmail" class="form-control" required>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" placeholder="password" id="newPassword" class="form-control" required>
+				</div>
+				<input type="submit" value="register" id="registerBtn">
+			</form>
+		</div>
+		<div id="viewVideoDiv">
+			<div id="videoHeader">
+				<p id="videoTitle">Video About A Fat Bunny</p>
+				<p id="tags">Tags: </p>
+			</div>
+			<video controls>
+				<source src="assets/videos/samplevid.mp4" type="video/mp4">
+<!--			<source src="" type="video/ogg">-->
+			</video>
+			<div id="videoInfo">
+				<div id="viewsVotes">
+					<img id="views" src="assets/images/views.png"/>
+					<h3 id="viewsText">123</h3>
+					<button id="likeBtn"></button>
+					<h3 id="likeText">14</h3>
+					<button id="dislikeBtn"></button>
+					<h3 id="dislikeText">26</h3>
+				</div>
+				<p id="videoOwner">Posted by: <font color="#5569AC"><b>thuganomix@yahoo.com</b></font></p>
+				<p id="videoDescription">This video is about a fat bunny that comes out of his sick cave and does some sick stuff.</p>
+			</div>
+			<div id="commentDiv">
+				<p id="userEmail">thuganomix@yahoo.com</p>
+				<p id="commentDate">2/29/2016</p>
+				<p id="comment">Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff.</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -24,8 +24,8 @@ func main() {
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl.html", nil)
 	})
-	router.GET("/view", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "view.tmpl.html", nil)
+	router.GET("/discover", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "discover.tmpl.html", nil)
 	})
 	router.GET("/upload", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "upload.tmpl.html", nil)
@@ -41,6 +41,9 @@ func main() {
 	})
 	router.GET("/login", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.tmpl.html", nil)
+	})
+	router.GET("/viewVideo", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "viewVideo.tmpl.html", nil)
 	})
 
 	router.Run(":" + port)
