@@ -3,8 +3,6 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
-
-	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
@@ -70,8 +68,7 @@ func NewUser(username, email, password string) (User, error) {
 		return user, errEmailExists
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), hashCost)
-	user.HashedPassword = string(hashedPassword)
+	user.HashedPassword = password
 	user.ID = GenerateID("usr", userIDLength)
 	return user, err
 }
@@ -109,10 +106,7 @@ func UpdateUser(user *User, email, currentPassword, newPassword string) (User, e
 		return out, nil
 	}
 
-	if bcrypt.CompareHashAndPassword(
-		[]byte(user.HashedPassword),
-		[]byte(currentPassword),
-	) != nil {
+	if currentPassword == existingUser.HashedPassword {
 		return out, errPasswordIncorrect
 	}
 
@@ -124,7 +118,6 @@ func UpdateUser(user *User, email, currentPassword, newPassword string) (User, e
 		return out, errPasswordTooShort
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPassword), hashCost)
-	user.HashedPassword = string(hashedPassword)
+	user.HashedPassword = newPassword
 	return out, err
 }
