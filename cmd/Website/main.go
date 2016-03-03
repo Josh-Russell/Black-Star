@@ -23,7 +23,7 @@ func init() {
 	globalSessionStore = sessionStore
 
 	// Assign a sql database
-	//	db, err := NewMySQLDB("root:Sar64jim24@tcp(127.0.0.1:3306)/gophr")
+	//	db, err := NewMySQLDB("root:P@ssw0rd! tcp(127.0.0.1:3306)/ProjectPegasus")
 	//	if err != nil {
 	//		panic(err)
 	//	}
