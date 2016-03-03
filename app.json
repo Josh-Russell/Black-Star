@@ -1,14 +1,14 @@
 {
-  "name": "go-getting-started",
-  "description": "Go Getting Started Example App",
+  "name": "project-pegasus",
+  "description": "A video sharing site created for a school assignment in go",
   "keywords": [
-    "getting-started",
+    "video sharing",
     "go",
     "sample",
     "example"
   ],
   "image": "heroku/go:1.6",
-  "mount_dir": "src/github.com/heroku/go-getting-started",
-  "website": "http://github.com/heroku/go-getting-started",
-  "repository": "http://github.com/heroku/go-getting-started"
+  "mount_dir": "src/github.com/heroku/ProjectPegasus",
+  "website": "projectpegasus.herokuapp.com",
+  "repository": "https://github.com/Josh-Russell/Black-Star"
 }
