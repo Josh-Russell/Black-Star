@@ -8,25 +8,25 @@
 }
 body {
 	margin: 0;
+	font-family: Helvetica;
+}
+body#registerBody {
 	background: url(../images/registerbackgrnd.jpg) no-repeat center center fixed; 
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	font-family: Helvetica;
 }
 a {
 	text-decoration: none;
 }
-#menu a:hover {
+#menu a:hover, #homeMenu a:hover {
 	border-bottom-width: 3px;
 	border-bottom-style: solid;
 	padding-bottom: 4px;
 	border-top-width: 3px;
 	border-top-style: solid;
 	padding-top: 4px;
-	color: #FFF;
-	text-decoration: none;
 }
 header {
 	width: 100%;
@@ -142,7 +142,7 @@ header a {
 	margin-top: -10px;
 	margin-bottom: -30px;
 }
-video {
+#viewVideoDiv video {
 	width: 730px;
 	height: 540px;
 	margin-top: -20px;
