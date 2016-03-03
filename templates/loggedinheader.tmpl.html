@@ -1,0 +1,21 @@
+{{ define "loggedinheader.tmpl.html"}}
+<head>
+	<title>Project Pegasus</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+</head>
+<header>
+	<a href="/">
+		<img id="logo" src="static/images/ProjectPegasusLogo.png"/>
+	</a>
+	<ul id="menu">
+		<li><a href="/viewVideo">test-video</a></li>
+		<li><a href="/discover">discover</a></li>
+		<li><a href="/search">search</a></li>
+		<li><a href="/logout">log out</a><li>
+	</ul>
+
+</header>
+{{end}}

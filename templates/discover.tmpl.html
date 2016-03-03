@@ -1,6 +1,11 @@
+
 <html>
 	<body>
-		{{template "header.tmpl.html"}}
+	{{if .currentuser}}
+		{{template "loggedinheader.tmpl.html"}}
+	{{else}}
+		 {{template "header.tmpl.html"}}
+	{{end}}
 		
 		Hello world from the view page!
 	</body>

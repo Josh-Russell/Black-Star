@@ -7,5 +7,11 @@ import (
 )
 
 func HandleNavigateToDiscoverPage(c *gin.Context) {
-	c.HTML(http.StatusOK, "discover.tmpl.html", nil)
+	session := RequestSession(c.Request)
+
+	if session != nil {
+		c.HTML(http.StatusOK, "discover.tmpl.html", gin.H{"currentuser": session.UserID})
+	} else {
+		c.HTML(http.StatusOK, "discover.tmpl.html", nil)
+	}
 }

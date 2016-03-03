@@ -1,5 +1,9 @@
 <html>
-	  {{template "header.tmpl.html"}}
+	{{if .currentuser}}
+		{{template "loggedinheader.tmpl.html"}}
+	{{else}}
+		 {{template "header.tmpl.html"}}
+	{{end}}
 	<body id="registerBody">
 	<div id="registerDiv">
 			<h1>sign up</h1>

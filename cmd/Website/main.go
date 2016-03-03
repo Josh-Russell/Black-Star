@@ -23,7 +23,7 @@ func init() {
 	globalSessionStore = sessionStore
 
 	//Assign a sql database
-	//	db, err := NewMySQLDB("root:P@ssw0rd! tcp(127.0.0.1:3306)/ProjectPegasus")
+	//	db, err := NewMySQLDB("root:'P@ssw0rd!'@tcp(10.10.14.54:9419)/ProjectPegasus")
 	//	if err != nil {
 	//		panic(err)
 	//	}
@@ -42,29 +42,31 @@ func main() {
 
 	fmt.Println(port)
 
-	router := gin.New()
-	router.Use(gin.Logger())
+	router := gin.Default()
+
+	authorized := router.Group("/registered", gin.BasicAuth(gin.Accounts{"user": "password"}))
 
 	if port != "3000" {
 		router.LoadHTMLGlob("templates/*.tmpl.html")
 		router.Static("/static", "static")
 	} else {
 		router.LoadHTMLGlob("../../templates/*.tmpl.html")
-		router.Static("../../static", "static")
+		router.Static("/static", "static")
 	}
 
 	router.GET("/", HandleNavigateToHome)
 	router.GET("/discover", HandleNavigateToDiscoverPage)
-	router.GET("/upload", HandleNavigateToUpload)
 	router.GET("/search", HandleNavigateToSearch)
 	router.GET("/register", HandleNavigateToRegister)
-	router.GET("/profile", HandleNavigateToProfile)
 	router.GET("/login", HandleNavigateToLoginPage)
 	router.GET("/viewVideo", HandleNavigateToVideoViewPage)
+	router.GET("/logout", HandleSessionDestroy)
 
-	router.POST("/logout", HandleSessionDestroy)
 	router.POST("/login", HandleSessionCreate)
 	router.POST("/register", HandleSessionNew)
+
+	authorized.GET("/profile", HandleNavigateToProfile)
+	authorized.GET("/upload", HandleNavigateToUpload)
 
 	router.Run(":" + port)
 }

@@ -30,5 +30,11 @@ func HandleUserCreate(c *gin.Context) {
 }
 
 func HandleNavigateToRegister(c *gin.Context) {
-	c.HTML(http.StatusOK, "register.tmpl.html", nil)
+	session := RequestSession(c.Request)
+
+	if session != nil {
+		c.HTML(http.StatusOK, "register.tmpl.html", gin.H{"currentuser": session.UserID})
+	} else {
+		c.HTML(http.StatusOK, "register.tmpl.html", nil)
+	}
 }

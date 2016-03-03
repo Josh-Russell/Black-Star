@@ -1,5 +1,9 @@
 <html>
-	  {{template "header.tmpl.html"}}
+	{{if .currentuser}}
+		{{template "loggedinheader.tmpl.html"}}
+	{{else}}
+		 {{template "header.tmpl.html"}}
+	{{end}}
 	<body>
 		Hello world from the Upload page!
 	</body>

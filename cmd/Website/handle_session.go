@@ -16,13 +16,16 @@ func HandleSessionDestroy(c *gin.Context) {
 			panic(err)
 		}
 	}
+	fmt.Println("signing out...")
+	c.HTML(http.StatusOK, "index.tmpl.html", nil)
 }
 
 func HandleSessionNew(c *gin.Context) {
 	var form Register
 
 	if c.Bind(&form) == nil {
-		if form.Email == "user" && form.RetypePassword == form.Password {
+		if form.RetypePassword == form.Password {
+
 			c.HTML(http.StatusOK, "view.tmpl.html", nil)
 			fmt.Println("it worked!")
 		} else {
@@ -35,7 +38,7 @@ func HandleSessionNew(c *gin.Context) {
 }
 
 func HandleSessionCreate(c *gin.Context) {
-	fmt.Println("Attemting to sign in...")
+	fmt.Println("Attempting to sign in...")
 	var form Login
 	// This will infer what binder to use depending on the content-type header.
 	if c.Bind(&form) == nil {
@@ -51,7 +54,7 @@ func HandleSessionCreate(c *gin.Context) {
 			}
 
 			fmt.Println("Signed in.")
-			c.Redirect(http.StatusFound, "/")
+			c.HTML(http.StatusOK, "viewVideo.tmpl.html", gin.H{"currentuser": "words"})
 		}
 	}
 

@@ -1,6 +1,12 @@
 <html>
-	  {{template "header.tmpl.html"}}
-	<body id="viewVideoBody">
+
+
+	{{if .currentuser}}
+		{{template "loggedinheader.tmpl.html"}}
+	{{else}}
+		 {{template "header.tmpl.html"}}
+	{{end}}
+		<body id="viewVideoBody">
 		<div id="viewVideoDiv">
 			<div id="videoHeader">
 				<p id="videoTitle">Video About A Fat Bunny</p>
