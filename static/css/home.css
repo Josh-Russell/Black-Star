@@ -17,6 +17,7 @@
 	margin-right: auto;
 	margin-bottom: 30px;
 	width: 1000px;
+	height: 850px;
 	border-radius: 3px;
 	border: solid 1px #C9C9CC;
 }
@@ -47,7 +48,7 @@
 }
 .trendingVideo, .recentVideo {
 	width: 450px;
-	height: 230px;
+	height: 20px;
 	max-height: 230px;
 	margin: 50px 0 150px 30px;
 	display: inline-block;
@@ -68,6 +69,8 @@
     height: auto;
 }
 .trendingVideoTitle, .recentVideoTitle {
+	position: relative;
+	top: 100px;
 	width: 400px;
 	font-weight: bold;
 	font-size: 15px;
@@ -75,7 +78,7 @@
 .trendingVideoTags, .recentVideoTags {
 	width: 400px;
 	height: 80px;
-	margin-top: 2px;
+	margin-top: 100px;
 	font-size: 14px;
 }
 .trendingVideo a, .recentVideo a {
