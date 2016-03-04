@@ -36,8 +36,9 @@
 	color: #000;
 }
 #homeMenu a:hover {
-	border-top: none;
-	border-bottom-color: #000;
+	border-bottom-width: 3px;
+	border-bottom-style: solid #000;
+	padding-bottom: 4px;
 }
 #trendingVideoDiv {
 	visibility: visible;

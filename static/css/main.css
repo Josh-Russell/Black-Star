@@ -21,14 +21,14 @@ body#registerBody {
 a {
 	text-decoration: none;
 }
-#menu a:hover, #homeMenu a:hover {
+#menu a:hover {
 	border-bottom-width: 3px;
 	border-bottom-style: solid #FFF;
 	padding-bottom: 4px;
 	border-top-width: 3px;
-	border-top-style: solid;
-	border-color: #FFF;
+	border-top-style: solid #FFF;
 	padding-top: 4px;
+	color: #FFF;
 }
 header {
 	width: 100%;
