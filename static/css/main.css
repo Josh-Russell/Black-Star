@@ -9,6 +9,7 @@
 body {
 	margin: 0;
 	font-family: Helvetica;
+	background-color: #E9EAED;
 }
 body#registerBody {
 	background: url(../images/registerbackgrnd.jpg) no-repeat center center fixed; 
