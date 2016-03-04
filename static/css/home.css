@@ -60,7 +60,7 @@
     height: 140px;
 	margin-bottom: 10px;
 }
-.trendingVideo video, .recentVideo video {
+.trendingThumbnail {
 	position: absolute;
     top: 0;
     left: 0;
