@@ -37,6 +37,7 @@
 }
 #homeMenu a:hover {
 	border-top: none;
+	border-bottom-color: #000;
 }
 #trendingVideoDiv {
 	visibility: visible;
