@@ -37,7 +37,8 @@
 }
 #homeMenu a:hover {
 	border-bottom-width: 3px;
-	border-bottom-style: solid #000;
+	border-bottom-style: solid;
+	border-bottom-color: #000;
 	padding-bottom: 4px;
 }
 #trendingVideoDiv {
