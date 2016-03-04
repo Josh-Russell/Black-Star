@@ -15,6 +15,7 @@
 	margin-top: 290px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-bottom: 30px;
 	width: 1000px;
 	border-radius: 3px;
 	border: solid 1px #C9C9CC;
@@ -38,12 +39,11 @@
 }
 #trendingVideoDiv {
 	visibility: visible;
-	padding-bottom: 50px;
 }
 #recentVideoDiv {
 	visibility: hidden;
 	padding-bottom: 50px;
-	margin-top: -750px;
+	margin-top: -850px;
 }
 .trendingVideo, .recentVideo {
 	width: 450px;
