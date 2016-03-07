@@ -1,7 +1,22 @@
 ##URL
-https://projectpegasus.herokuapp.com/
+Off Campus
+http://69.27.22.79:9419/
+On Campus
+http://10.10.14.54:9419/
 
 ##Release Notes
+++++++++ 0.0.5 ++++++++
+SPRINT 4
+1. Moved the server off of heroku
+2. allowed for routing based on whether or not a user is logged in
+	a. users may log in using any username or password
+3. allow the user to log out
+4. created an example of a video page
+5. create an example of a search page
+6. create the index page
+6. set the ground work to upload and load videos
+8. fixed styling errors
+9. fixed the database and almost done with the DAL
 
 ++++++++ 0.0.4 ++++++++
 SPRINT 3

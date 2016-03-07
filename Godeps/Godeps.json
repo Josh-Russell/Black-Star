@@ -1,7 +1,0 @@
-{
-	"ImportPath": "github.com/heroku/project-pegasus",
-	"GoVersion": "go1.6",
-	"Packages": [
-		"./..."
-	]
-}
