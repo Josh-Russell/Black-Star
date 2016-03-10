@@ -61,10 +61,10 @@ func (video *Video) CreateFromFile(file multipart.File, headers *multipart.FileH
 
 	// Move our file to an appropriate place, with an appropriate name
 	video.title = headers.Filename
-	video.Location = video.ID + filepath.Ext(video.title)
+	video.Location = "M:/videos/" + video.ID + filepath.Ext(video.title)
 
 	// Open a file at target location
-	savedFile, err := os.Create("M:/videos/" + video.Location)
+	savedFile, err := os.Create(video.Location)
 	if err != nil {
 		return err
 	}
