@@ -1,27 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"mime/multipart"
 	"net/http"
 	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
 const videoIDLength = 10
-
-type video struct {
-	ID          string
-	UserID      string
-	Name        string
-	Location    string
-	Size        int64
-	CreatedAt   time.Time
-	Description string
-}
 
 func HandleNavigateToUpload(c *gin.Context) {
 	session := RequestSession(c.Request)
@@ -32,11 +22,12 @@ func HandleNavigateToUpload(c *gin.Context) {
 		c.HTML(http.StatusOK, "login.tmpl.html", nil)
 	}
 }
-func createNewVideo(user *User) *video {
-	return &video{
+func createNewVideo(user *User) *Video {
+	return &Video{
 		ID:        GenerateID("vid", videoIDLength),
-		UserID:    "5",
-		CreatedAt: time.Now(),
+		Username:  user.Username,
+		upvotes:   0,
+		downvotes: 0,
 	}
 }
 func HandleNewVideo(c *gin.Context) {
@@ -52,6 +43,8 @@ func HandleNewVideo(c *gin.Context) {
 	}
 	video := createNewVideo(user)
 	video.Description = c.Request.FormValue("description")
+	video.title = c.Request.FormValue("title")
+	video.mature = c.Request.FormValue("matureContent") == "on"
 
 	file, headers, err := c.Request.FormFile("file")
 
@@ -73,7 +66,8 @@ func HandleNewVideo(c *gin.Context) {
 
 	err = video.HandleCreateVideo(file, headers)
 	if err != nil {
-		c.HTML(http.StatusOK, "upload.tmpl.html", gin.H{
+		fmt.Println("Failed.")
+		c.String(http.StatusExpectationFailed, "failed to upload to the database", gin.H{
 			"Error": err,
 			"Video": video,
 		})
@@ -82,13 +76,12 @@ func HandleNewVideo(c *gin.Context) {
 
 	c.HTML(http.StatusFound, "index.tmpl.html", gin.H{"currentuser": 5})
 }
-func (vid *video) HandleCreateVideo(file multipart.File, headers *multipart.FileHeader) error {
+func (vid *Video) HandleCreateVideo(file multipart.File, headers *multipart.FileHeader) error {
 	// Move our file to an appropriate place, with an appropriate name
-	vid.Name = headers.Filename
-	vid.Location = vid.ID + filepath.Ext(vid.Name)
+	vid.Location = vid.ID + filepath.Ext(headers.Filename)
 
 	// Open a file at target location
-	savedFile, err := os.Create("./data/videos/" + vid.Location)
+	savedFile, err := os.Create("videos/" + vid.Location)
 	if err != nil {
 		return err
 	}
@@ -96,13 +89,10 @@ func (vid *video) HandleCreateVideo(file multipart.File, headers *multipart.File
 	defer savedFile.Close()
 
 	// Copy the uploaded file to the target location
-	size, err := io.Copy(savedFile, file)
+	_, err = io.Copy(savedFile, file)
 	if err != nil {
 		return err
 	}
-	vid.Size = size
-
-	return err
 	// Save the image to the database
-	//return globalImageStore.Save(vid)
+	return globalVideoStore.Save(vid)
 }

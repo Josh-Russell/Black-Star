@@ -1,6 +1,10 @@
 package main
 
-import "database/sql"
+import (
+	"database/sql"
+	"fmt"
+	"strings"
+)
 
 const pageSize = 25
 
@@ -24,10 +28,11 @@ func NewDBVideoLocationStore() VideoStore {
 }
 
 func (store *DBVideoLocationStore) Save(video *Video) error {
+	fmt.Println("words")
 	_, err := store.db.Exec(
 		`
 		REPLACE INTO videos
-			(videoID, title, username, discription, filepath, upvotes, downvotes, mature)
+			(videoID, title, username, description, filepath, upvotes, downvotes, mature)
 		VALUES
 			(?, ?, ?, ?, ?, ?, ?, ?)
 		`,
@@ -44,11 +49,12 @@ func (store *DBVideoLocationStore) Save(video *Video) error {
 }
 
 func (store *DBVideoLocationStore) Find(id string) (*Video, error) {
+	id = strings.TrimPrefix(id, ":")
 	row := store.db.QueryRow(
 		`
-		SELECT videoID, title, username, discription, filepath, upvotes, downvotes, mature
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
 		FROM videos
-		WHERE id = ?`,
+		WHERE videoID = ?`,
 		id,
 	)
 
@@ -69,7 +75,7 @@ func (store *DBVideoLocationStore) Find(id string) (*Video, error) {
 func (store *DBVideoLocationStore) FindAll(offset int) ([]Video, error) {
 	rows, err := store.db.Query(
 		`
-		SELECT videoID, title, username, discription, filepath, upvotes, downvotes, mature
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
 		FROM videos
 		ORDER BY title DESC
 		LIMIT ?
@@ -108,7 +114,7 @@ func (store *DBVideoLocationStore) FindAll(offset int) ([]Video, error) {
 func (store *DBVideoLocationStore) FindAllByUser(user *User, offset int) ([]Video, error) {
 	rows, err := store.db.Query(
 		`
-		SELECT videoID, title, username, discription, filepath, upvotes, downvotes, mature
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
 		FROM videos
 		WHERE username = ?
 		ORDER BY created_at DESC

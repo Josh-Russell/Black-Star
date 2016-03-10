@@ -7,29 +7,20 @@
 		<body id="viewVideoBody">
 		<div id="viewVideoDiv">
 			<div id="videoHeader">
-				<p id="videoTitle">Video About A Fat Bunny</p>
-				<p id="tags">Tags: </p>
+				<p id="videoTitle">{{.video.DisplayTitle}}</p>
 			</div>
 			<video controls>
-				<source src="static/videos/cats.mp4" type="video/mp4">
-<!--			<source src="" type="video/ogg">-->
+				<source src="{{.video.StaticRoute}}" type="video/mp4">
 			</video>
 			<div id="videoInfo">
 				<div id="viewsVotes">
-					<img id="views" src="static/images/views.png"/>
-					<h3 id="viewsText">123</h3>
 					<button id="likeBtn"></button>
-					<h3 id="likeText">14</h3>
+					<h3 id="likeText">{{.video.DisplayUpvotes}}</h3>
 					<button id="dislikeBtn"></button>
-					<h3 id="dislikeText">26</h3>
+					<h3 id="dislikeText">{{.video.DisplayDownvotes}}</h3>
 				</div>
-				<p id="videoOwner">Posted by: <font color="#5569AC"><b>thuganomix@yahoo.com</b></font></p>
-				<p id="videoDescription">This video is about a fat bunny that comes out of his sick cave and does some sick stuff.</p>
-			</div>
-			<div id="commentDiv">
-				<p id="userEmail">thuganomix@yahoo.com</p>
-				<p id="commentDate">2/29/2016</p>
-				<p id="comment">Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff.</p>
+				<p id="videoOwner">Posted by: <font color="#5569AC"><b>{{.video.DisplayUsername}}</b></font></p>
+				<p id="videoDescription">{{.video.DisplayDescription}}</p>
 			</div>
 		</div>
 	</body>

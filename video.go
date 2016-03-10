@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strconv"
 )
 
 func init() {
@@ -22,8 +23,8 @@ type Video struct {
 	Username    string
 	Description string
 	Location    string
-	upvotes     int64
-	downvotes   int64
+	upvotes     int
+	downvotes   int
 	mature      bool
 }
 
@@ -35,7 +36,7 @@ func NewVideo(user *User) *Video {
 }
 
 func (video *Video) StaticRoute() string {
-	return "/vid/" + video.Location
+	return "/videos/" + video.Location
 }
 
 func (video *Video) StaticThumbnailRoute() string {
@@ -45,9 +46,25 @@ func (video *Video) StaticThumbnailRoute() string {
 func (video *Video) StaticPreviewRoute() string {
 	return "/vid/preview/" + video.Location
 }
+func (video *Video) DisplayTitle() string {
+	return video.title
+}
+func (video *Video) DisplayUpvotes() string {
 
+	return strconv.Itoa(video.upvotes)
+}
+func (video *Video) DisplayDownvotes() string {
+
+	return strconv.Itoa(video.downvotes)
+}
+func (video *Video) DisplayDescription() string {
+	return video.Description
+}
+func (video *Video) DisplayUsername() string {
+	return video.Username
+}
 func (video *Video) ShowRoute() string {
-	return "/video/" + video.ID
+	return "/videos/" + video.ID
 }
 
 // A map of accepted mime types and their file extension
