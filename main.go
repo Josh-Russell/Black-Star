@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
@@ -30,18 +31,24 @@ func init() {
 
 	//Assign a sql database
 	//check if we can connect with on-campus ip
-	db, err := NewMySQLDB("projp:password@tcp(69.27.22.79:3306)/projectpegasus")
+	var db *sql.DB
+	fmt.Println("Attempting to connect on-campus...")
+	db, err = NewMySQLDB("projp:password@tcp(10.10.14.54:3306)/projectpegasus")
 	if err != nil {
+		fmt.Println("failed to connect to on-camps.")
+		fmt.Println("Attempting to connect off-campus...")
 		//check if we can connect with off-campus ip
-		//db, err := NewMySQLDB("projp:password@tcp(69.27.22.79:3306)/projectpegasus")
+		db, err = NewMySQLDB("projp:password@tcp(69.27.22.79:3306)/projectpegasus")
 		if err != nil {
+			fmt.Println("failed to connect to the database..")
 			panic(err)
 		}
 	}
+	fmt.Println("Connected to database.\n")
 	globalMySQLDB = db
 
 	// Assign an image store
-	globalImageStore = NewDBImageStore()
+	globalVideoStore = NewDBVideoLocationStore()
 }
 
 func main() {
@@ -52,13 +59,14 @@ func main() {
 
 	router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
+	router.Static("/videos", "videos")
 
 	router.GET("/", HandleNavigateToHome)
 	router.GET("/discover", HandleNavigateToDiscoverPage)
 	router.GET("/search", HandleNavigateToSearch)
 	router.GET("/register", HandleNavigateToRegister)
 	router.GET("/login", HandleNavigateToLoginPage)
-	router.GET("/viewVideo", HandleNavigateToVideoViewPage)
+	router.GET("/viewVideo:videoID", HandleNavigateToVideoViewPage)
 	router.GET("/logout", HandleSessionDestroy)
 	router.GET("/upload", HandleNavigateToUpload)
 	router.POST("/login", HandleSessionCreate)

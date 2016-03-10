@@ -6,13 +6,20 @@
 	{{end}}
 	<body>
 		<form action="/upload" method="POST" enctype="multipart/form-data">
+        	<div class="form-group">
+				<label for="title">Title</label>
+				<textarea name="title" id="title" class="form-control">{{.Video.Title}}</textarea>
+			</div>
+            <div class="form-group">
+                <input type="checkbox" name="matureContent" id="matureContent">Mature Content </input>
+            </div>
 			<div class="form-group">
 				<label for="videoUpload">Upload from file</label>
 				<input type="file" name="file" id="videoUpload" class="form-control">
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea name="description" id="description" class="form-control">{{.Image.Description}}</textarea>
+				<textarea name="description" id="description" class="form-control">{{.Video.Description}}</textarea>
 			</div>
 			<input type="submit" value="Add" class="btn btn-primary">
 		</form>

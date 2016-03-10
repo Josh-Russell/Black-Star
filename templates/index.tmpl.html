@@ -12,65 +12,15 @@
 				<li><a href="#">Trending</a></li>
 				<li><a href="#">Recent</a></li>
 			</ul>
-			<div id="trendingVideoDiv">
-				<div class="trendingVideo">
-					<div class="trendingVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="trendingVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="trendingVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="trendingVideo">
-					<div class="trendingVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="trendingVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="trendingVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="trendingVideo">
-					<div class="trendingVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="trendingVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="trendingVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="trendingVideo">
-					<div class="trendingVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="trendingVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="trendingVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-			</div>
-			<div id="recentVideoDiv">
-				<div class="recentVideo">
-					<div class="recentVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="recentVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="recentVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="recentVideo">
-					<div class="recentVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="recentVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="recentVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="recentVideo">
-					<div class="recentVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="recentVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="recentVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
-				<div class="recentVideo">
-					<div class="recentVideoWrapper">
-						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
-					</div>
-					<a href="#" class="recentVideoTitle">Froggy Fresh - Christmas</a>
-					<p class="recentVideoTags">Tags: music video, froggy fresh, rap, christmas rap, music</p>
-				</div>
+			<div class="col-xs-12 col-sm-6 col-md-3">
+            <ul>
+                {{range .videos}}
+	                <li><a href="/viewVideo:{{.ID}}">{{.DisplayTitle}}</a></li>
+                    
+                {{else}}
+                <p>NO VIDEOS DUDE</p>
+                {{end}}
+                </ul>
 			</div>
 		</div>
 	</body>

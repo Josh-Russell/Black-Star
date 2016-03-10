@@ -1,75 +1,83 @@
 package main
 
-import "database/sql"
+import (
+	"database/sql"
+	"fmt"
+	"strings"
+)
 
 const pageSize = 25
 
-var globalImageStore ImageStore
+var globalVideoStore VideoStore
 
-type ImageStore interface {
-	Save(vid *video) error
-	Find(id string) (*video, error)
-	FindAll(offset int) ([]video, error)
-	FindAllByUser(user *User, offset int) ([]video, error)
+type VideoStore interface {
+	Save(video *Video) error
+	Find(id string) (*Video, error)
+	FindAll(offset int) ([]Video, error)
+	FindAllByUser(user *User, offset int) ([]Video, error)
 }
 
-type DBImageStore struct {
+type DBVideoLocationStore struct {
 	db *sql.DB
 }
 
-func NewDBImageStore() ImageStore {
-	return &DBImageStore{
+func NewDBVideoLocationStore() VideoStore {
+	return &DBVideoLocationStore{
 		db: globalMySQLDB,
 	}
 }
 
-func (store *DBImageStore) Save(vid *video) error {
+func (store *DBVideoLocationStore) Save(video *Video) error {
+	fmt.Println("words")
 	_, err := store.db.Exec(
 		`
-		REPLACE INTO images
-			(id, user_id, name, location, description, size, created_at)
+		REPLACE INTO videos
+			(videoID, title, username, description, filepath, upvotes, downvotes, mature)
 		VALUES
-			(?, ?, ?, ?, ?, ?, ?)
+			(?, ?, ?, ?, ?, ?, ?, ?)
 		`,
-		vid.ID,
-		vid.UserID,
-		vid.Name,
-		vid.Location,
-		vid.Description,
-		vid.Size,
-		vid.CreatedAt,
+		video.ID,
+		video.title,
+		video.Username,
+		video.Description,
+		video.Location,
+		video.upvotes,
+		video.downvotes,
+		video.mature,
 	)
 	return err
 }
 
-func (store *DBImageStore) Find(id string) (*video, error) {
+func (store *DBVideoLocationStore) Find(id string) (*Video, error) {
+	id = strings.TrimPrefix(id, ":")
 	row := store.db.QueryRow(
 		`
-		SELECT id, user_id, name, location, description, size, created_at
-		FROM images
-		WHERE id = ?`,
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
+		FROM videos
+		WHERE videoID = ?`,
 		id,
 	)
 
-	vid := video{}
+	video := Video{}
 	err := row.Scan(
-		&vid.ID,
-		&vid.UserID,
-		&vid.Name,
-		&vid.Location,
-		&vid.Description,
-		&vid.Size,
-		&vid.CreatedAt,
+		&video.ID,
+		&video.title,
+		&video.Username,
+		&video.Description,
+		&video.Location,
+		&video.upvotes,
+		&video.downvotes,
+		&video.mature,
 	)
-	return &vid, err
+	return &video, err
 }
 
-func (store *DBImageStore) FindAll(offset int) ([]video, error) {
+func (store *DBVideoLocationStore) FindAll(offset int) ([]Video, error) {
 	rows, err := store.db.Query(
 		`
-		SELECT id, user_id, name, location, description, size, created_at
-		FROM images
-		ORDER BY created_at DESC
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
+		FROM videos
+		ORDER BY title DESC
 		LIMIT ?
 		OFFSET ?
 		`,
@@ -80,34 +88,35 @@ func (store *DBImageStore) FindAll(offset int) ([]video, error) {
 		return nil, err
 	}
 
-	vids := []video{}
+	videos := []Video{}
 	for rows.Next() {
-		vid := video{}
+		video := Video{}
 		err := rows.Scan(
-			&vid.ID,
-			&vid.UserID,
-			&vid.Name,
-			&vid.Location,
-			&vid.Description,
-			&vid.Size,
-			&vid.CreatedAt,
+			&video.ID,
+			&video.title,
+			&video.Username,
+			&video.Description,
+			&video.Location,
+			&video.upvotes,
+			&video.downvotes,
+			&video.mature,
 		)
 		if err != nil {
 			return nil, err
 		}
 
-		vids = append(vids, vid)
+		videos = append(videos, video)
 	}
 
-	return vids, nil
+	return videos, nil
 }
 
-func (store *DBImageStore) FindAllByUser(user *User, offset int) ([]video, error) {
+func (store *DBVideoLocationStore) FindAllByUser(user *User, offset int) ([]Video, error) {
 	rows, err := store.db.Query(
 		`
-		SELECT id, user_id, name, location, description, size, created_at
-		FROM images
-		WHERE user_id = ?
+		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
+		FROM videos
+		WHERE username = ?
 		ORDER BY created_at DESC
 		LIMIT ?
 		OFFSET ?`,
@@ -119,24 +128,25 @@ func (store *DBImageStore) FindAllByUser(user *User, offset int) ([]video, error
 		return nil, err
 	}
 
-	vids := []video{}
+	videos := []Video{}
 	for rows.Next() {
-		vid := video{}
+		video := Video{}
 		err := rows.Scan(
-			&vid.ID,
-			&vid.UserID,
-			&vid.Name,
-			&vid.Location,
-			&vid.Description,
-			&vid.Size,
-			&vid.CreatedAt,
+			&video.ID,
+			&video.title,
+			&video.Username,
+			&video.Description,
+			&video.Location,
+			&video.upvotes,
+			&video.downvotes,
+			&video.mature,
 		)
 		if err != nil {
 			return nil, err
 		}
 
-		vids = append(vids, vid)
+		videos = append(videos, video)
 	}
 
-	return vids, nil
+	return videos, nil
 }
