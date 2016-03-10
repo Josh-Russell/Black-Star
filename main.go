@@ -22,13 +22,6 @@ func init() {
 	}
 	globalSessionStore = sessionStore
 
-	//Assign an image store
-	//	imagestore, err := NewFileSessionStore(".data/imageInformation.json")
-	//	if err != nil {
-	//		panic(fmt.Errorf("Error creating session store: %s", err))
-	//	}
-	//	globalImageStore = imagestore
-
 	//Assign a sql database
 	//check if we can connect with on-campus ip
 	var db *sql.DB
@@ -67,6 +60,7 @@ func main() {
 	router.GET("/register", HandleNavigateToRegister)
 	router.GET("/login", HandleNavigateToLoginPage)
 	router.GET("/viewVideo:videoID", HandleNavigateToVideoViewPage)
+	router.GET("/confirmAge:videoID", HandleNavigateToConfirmAge)
 	router.GET("/logout", HandleSessionDestroy)
 	router.GET("/upload", HandleNavigateToUpload)
 	router.POST("/login", HandleSessionCreate)

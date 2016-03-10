@@ -1,19 +1,9 @@
 {
   "Sessions": {
-    "sess_1SNWJ96LNir5ZzSYaT5U": {
-      "ID": "sess_1SNWJ96LNir5ZzSYaT5U",
-      "UserID": "1",
-      "Expiry": "2016-03-10T17:27:23.4171496-07:00"
-    },
     "sess_CbFLS2GvLXmhm90hWFSV": {
       "ID": "sess_CbFLS2GvLXmhm90hWFSV",
       "UserID": "1",
       "Expiry": "2016-03-12T19:27:23.9900108-07:00"
-    },
-    "sess_XInzeOQ8hQmiWFqBRKqZ": {
-      "ID": "sess_XInzeOQ8hQmiWFqBRKqZ",
-      "UserID": "1",
-      "Expiry": "2016-03-10T16:12:15.7540164-07:00"
     }
   }
 }

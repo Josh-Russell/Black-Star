@@ -73,8 +73,8 @@ func HandleNewVideo(c *gin.Context) {
 		})
 		return
 	}
-
-	c.HTML(http.StatusFound, "index.tmpl.html", gin.H{"currentuser": 5})
+	c.Redirect(303, "/")
+	//c.HTML(http.StatusFound, "index.tmpl.html", gin.H{"currentuser": 5})
 }
 func (vid *Video) HandleCreateVideo(file multipart.File, headers *multipart.FileHeader) error {
 	// Move our file to an appropriate place, with an appropriate name

@@ -1,0 +1,17 @@
+{{define "confirmAge.tmpl.html"}}
+<html>
+	{{if .currentuser}}
+		{{template "loggedinheader.tmpl.html"}}
+	{{else}}
+		 {{template "header.tmpl.html"}}
+	{{end}}
+	
+	<body>
+	<h1>MATURE CONTENT WARNING</h1>
+		<p>This video contains mature content not recomended for viewers under the age of 18. This may include mature language, violence, or even pornographic images.
+		By clicking continue you consent to view and confirm that you are over the age of 18.</p>
+		<a href="/">I have young eyes! Take me back to safety!</a>
+		<a href="/viewVideo{{.video.ID}}">I'm an adult! Let me continue!</a>
+	</body>
+</html>
+{{end}}

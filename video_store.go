@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"strings"
 )
 
 const pageSize = 25
@@ -49,7 +48,7 @@ func (store *DBVideoLocationStore) Save(video *Video) error {
 }
 
 func (store *DBVideoLocationStore) Find(id string) (*Video, error) {
-	id = strings.TrimPrefix(id, ":")
+	//id = strings.TrimPrefix(id, ":")
 	row := store.db.QueryRow(
 		`
 		SELECT videoID, title, username, description, filepath, upvotes, downvotes, mature
