@@ -21,26 +21,34 @@ func init() {
 	}
 	globalSessionStore = sessionStore
 
-	//Assign a sql database
-	//	db, err := NewMySQLDB("root:'P@ssw0rd!'@tcp(10.10.14.54:9419)/ProjectPegasus")
+	//Assign an image store
+	//	imagestore, err := NewFileSessionStore(".data/imageInformation.json")
 	//	if err != nil {
-	//		panic(err)
+	//		panic(fmt.Errorf("Error creating session store: %s", err))
 	//	}
-	//	globalMySQLDB = db
+	//	globalImageStore = imagestore
+
+	//Assign a sql database
+	//check if we can connect with on-campus ip
+	db, err := NewMySQLDB("projp:password@tcp(69.27.22.79:3306)/projectpegasus")
+	if err != nil {
+		//check if we can connect with off-campus ip
+		//db, err := NewMySQLDB("projp:password@tcp(69.27.22.79:3306)/projectpegasus")
+		if err != nil {
+			panic(err)
+		}
+	}
+	globalMySQLDB = db
 
 	// Assign an image store
-	//globalImageStore = NewDBImageStore()
+	globalImageStore = NewDBImageStore()
 }
 
 func main() {
 
 	port := "9419"
 
-	fmt.Println(port)
-
 	router := gin.Default()
-
-	authorized := router.Group("/registered", gin.BasicAuth(gin.Accounts{"user": "password"}))
 
 	router.LoadHTMLGlob("templates/*.tmpl.html")
 	router.Static("/static", "static")
@@ -56,9 +64,6 @@ func main() {
 	router.POST("/login", HandleSessionCreate)
 	router.POST("/register", HandleSessionNew)
 	router.POST("/upload", HandleNewVideo)
-
-	authorized.GET("/profile", HandleNavigateToProfile)
-	authorized.GET("/upload", HandleNavigateToUpload)
 
 	router.Run(":" + port)
 }
