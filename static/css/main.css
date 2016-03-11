@@ -77,7 +77,7 @@ header a {
 #registerDiv h1 {
 	
 }
-#registerDiv {
+#registerDiv, #uploadDiv {
 	width: 530px;
 	margin-top: 280px;
 }
@@ -102,7 +102,7 @@ header a {
 	background-color: #FFF;
 	border: 1px solid #71B5FF;
 }
-#registerBtn {
+#registerBtn, #uploadBtn, #addComment {
 	width: 375px;
 	height: 60px;
 	position: relative;
@@ -264,3 +264,10 @@ button:focus {
 #search input[type="text"]:focus {
     width: 180px;
  }
+#commentForm {
+	margin-top: 60px;
+	margin-bottom: -40px;
+}
+#commentForm textarea {
+	font-size: 14px;
+}

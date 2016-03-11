@@ -22,6 +22,20 @@
 				<p id="videoOwner">Posted by: <font color="#5569AC"><b>{{.video.DisplayUsername}}</b></font></p>
 				<p id="videoDescription">{{.video.DisplayDescription}}</p>
 			</div>
+			<div id="commentDiv">
+				<p id="userEmail">thuganomix@yahoo.com</p>
+<!--				<p id="commentDate">2/29/2016</p>-->
+				<p id="comment">Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff. Hey I am a lame comment. I wrote this comment because I enjoy to test my website sometimes and stuff.</p>
+			</div>
+			<form id="commentForm" action="#" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<textarea name="name" id="name" class="form-control">Commenter Name</textarea>
+				</div>
+				<div class="form-group">
+					<textarea name="comment" id="comment" class="form-control">Comment</textarea>
+				</div>
+				<input type="submit" value="Add Comment" id="addComment">
+			</form>
 		</div>
 	</body>
 </html>
