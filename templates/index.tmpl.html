@@ -9,17 +9,25 @@
 		<p id="bannerText">View. Share. Vote.</p>
 		<div id="homeDiv">
 			<ul id="homeMenu">
-				<li><a href="#">Trending</a></li>
+<!--				<li><a href="#">Trending</a></li>-->
 				<li><a href="#">Recent</a></li>
 			</ul>
-			<div class="col-xs-12 col-sm-6 col-md-3">
-            <ul>
+			<div id="trendingVideoDiv">
+
                 {{range .videos}}
-	                <li><a href="/viewVideo{{.ID}}">{{.DisplayTitle}}</a></li>
+				<a href="/viewVideo{{.ID}}">
+				<div class="trendingVideo">
+					<div class="trendingVideoWrapper">
+						<img class="trendingThumbnail" src="static/images/trendingThumbnail.png"/>
+					</div>
+					<a class="trendingVideoTitle">{{.DisplayTitle}}</a>
+					<p class="trendingVideoTags"> <br /></p>
+					
+				</div>
+				</a>
                 {{else}}
                 <p>NO VIDEOS DUDE</p>
                 {{end}}
-                </ul>
 			</div>
 		</div>
 	</body>

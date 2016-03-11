@@ -1,9 +1,29 @@
 {
   "Sessions": {
+    "sess_7lGoWAzSz7VkfrLpOfiT": {
+      "ID": "sess_7lGoWAzSz7VkfrLpOfiT",
+      "UserID": "1",
+      "Expiry": "2016-03-13T19:23:48.5827218-06:00"
+    },
     "sess_CbFLS2GvLXmhm90hWFSV": {
       "ID": "sess_CbFLS2GvLXmhm90hWFSV",
       "UserID": "1",
       "Expiry": "2016-03-12T19:27:23.9900108-07:00"
+    },
+    "sess_fVwypB0rVnDAD9HZw7UG": {
+      "ID": "sess_fVwypB0rVnDAD9HZw7UG",
+      "UserID": "1",
+      "Expiry": "2016-03-13T18:18:15.3227819-06:00"
+    },
+    "sess_js4Cm5jSjYgpvFaF93vP": {
+      "ID": "sess_js4Cm5jSjYgpvFaF93vP",
+      "UserID": "1",
+      "Expiry": "2016-03-13T17:25:01.5588859-06:00"
+    },
+    "sess_vCC43wIYPkyyOP9rMQ0k": {
+      "ID": "sess_vCC43wIYPkyyOP9rMQ0k",
+      "UserID": "1",
+      "Expiry": "2016-03-13T19:09:22.8971467-06:00"
     }
   }
 }

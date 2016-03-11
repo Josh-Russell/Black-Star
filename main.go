@@ -55,6 +55,7 @@ func main() {
 	router.Static("/videos", "videos")
 
 	router.GET("/", HandleNavigateToHome)
+	router.GET("/page:pageNumber", HandleNavigateToHomeWithPageNumber)
 	router.GET("/discover", HandleNavigateToDiscoverPage)
 	router.GET("/search", HandleNavigateToSearch)
 	router.GET("/register", HandleNavigateToRegister)

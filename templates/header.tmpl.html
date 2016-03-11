@@ -6,16 +6,24 @@
 	</a>
 		{{if .currentuser}}
 	<ul id="menu">
+		<li id="searchLink">
+			<form method="get" action="/search" id="search">
+				<input name="q" type="text" size="40" placeholder="Search..." />
+			</form>
+		</li>
 		<li><a href="/viewVideo">test-video</a></li>
 		<li><a href="/discover">discover</a></li>
-		<li><a href="/search">search</a></li>
-		<li><a href="/logout">log out</a><li>
+		<li><a href="/logout">log out</a></li>
 	</ul>
 		{{else}}
-		<ul id="menu">
+	<ul id="menu">
+		<li id="searchLink">
+			<form method="get" action="/search" id="search">
+				<input name="q" type="text" size="40" placeholder="Search..." />
+			</form>
+		</li>
 		<li><a href="/viewVideo">test-video</a></li>
 		<li><a href="/discover">discover</a></li>
-		<li><a href="/search">search</a></li>
 		<li><a href="/login">log-in</a></li>
 		<li><a href="/register">register</a></li>
 	

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-const pageSize = 25
+const pageSize = 4
 
 var globalVideoStore VideoStore
 
